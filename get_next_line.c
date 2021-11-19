@@ -14,7 +14,6 @@
 
 char	*ft_free_with_end(char **line, int byte_was_read)
 {
-
 	if (byte_was_read < 0)
 	{
 		free(*line);
