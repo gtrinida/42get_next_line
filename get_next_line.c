@@ -32,8 +32,8 @@ char	*ft_new_line(char **remainder, char **line)
 		n_pointer = ft_strchr(*remainder, '\n');
 		if (n_pointer)
 		{
-			*n_pointer = '\0';
 			*line = ft_strdup(*remainder);
+			*n_pointer = '\0';
 			ft_strcpy(*remainder, ++n_pointer);
 		}
 		else
@@ -87,8 +87,8 @@ char	*get_next_line(int fd)
 		n_pointer = ft_strchr(buf, '\n');
 		if (n_pointer && *(n_pointer + 1))
 		{
-			*n_pointer = '\0';
 			remainder = ft_strdup(++n_pointer);
+			*n_pointer = '\0';
 		}
 		line = ft_free(&line, buf);
 		if (!(*line))
