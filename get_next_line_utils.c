@@ -34,9 +34,6 @@ void	ft_strcpy(char *dst, const char *src)
 		dst[i] = src[i];
 		i++;
 	}
-	i++;
-	dst[i] = '\n';
-	i++;
 	dst[i] = '\0';
 }
 
@@ -83,25 +80,20 @@ char	*ft_strchr(const char *s, int c)
 	return (0);
 }
 
-char	*ft_strdup(const char *s1)
+char *ft_strdup_extra(const char *str, int flag)
 {
-    char    *str;
-    int     i;
-    char    *n_p;
+	char *res;
+	size_t i;
 
-    i = 0;
-    n_p = ft_strchr(s1, '\n');
-    str = malloc(ft_strlen(s1) + 2);
-    while (str[i] != '\0' && (str + i) != n_p)
-    {
-        str[i] = s1[i];
-        i++;
-    }
-    if (n_p)
-    {
-        str[i] = '\n';
-        i++;
-    }
-    str[i] = '\0';
-    return (str);
+	i = 0;
+	res = malloc(ft_strlen(str) + 2);
+	while (str[i] != '\0' && (!flag || (flag && str[i] != '\n')))
+	{
+		res[i] = str[i];
+		i++;
+	}
+	if (flag && str[i] == '\n')
+		res[i++] = '\n';
+	res[i] = '\0';
+	return (res);
 }

@@ -14,7 +14,7 @@
 
 char	*ft_free_with_end(char **line, int byte_was_read)
 {
-	if (byte_was_read < 0)
+	if (byte_was_read <= 0)
 	{
 		free(*line);
 		*line = 0;
@@ -32,13 +32,12 @@ char	*ft_new_line(char **remainder, char **line)
 		n_pointer = ft_strchr(*remainder, '\n');
 		if (n_pointer)
 		{
-			*line = ft_strdup(*remainder);
-			*n_pointer = '\0';
+			*line = ft_strdup_extra(*remainder, 1);
 			ft_strcpy(*remainder, ++n_pointer);
 		}
 		else
 		{
-			*line = ft_strdup(*remainder);
+			*line = ft_strdup_extra(*remainder, 1);
 			free(*remainder);
 			*remainder = 0;
 		}
@@ -85,9 +84,9 @@ char	*get_next_line(int fd)
 	{
 		buf[byte_was_read] = '\0';
 		n_pointer = ft_strchr(buf, '\n');
-		if (n_pointer && *(n_pointer + 1))
+		if (n_pointer)
 		{
-			remainder = ft_strdup(++n_pointer);
+			remainder = ft_strdup_extra(++n_pointer, 0);
 			*n_pointer = '\0';
 		}
 		line = ft_free(&line, buf);
@@ -105,18 +104,17 @@ char	*get_next_line(int fd)
 //void check(int a)
 //{
 //    if (a)
-//        puts("OKKK\n");
+//        puts("Eto horosho!\n");
 //}
 //
 //void gnl(int fd, char const *expectedReturn)
 //{
 //    char *  gnlReturn = get_next_line(fd);
-//    printf("Наша функция вернула: %s\n", gnlReturn);
+//    printf("Наша функция вернула: [%s]\n", gnlReturn);
 //    if (expectedReturn == NULL)
 //        check(gnlReturn == NULL);
 //    else
 //    {
-//       // printf("%s\n", gnlReturn);
 //        check(!strcmp(gnlReturn, expectedReturn));
 //    }
 //    free(gnlReturn);
@@ -124,10 +122,13 @@ char	*get_next_line(int fd)
 //
 //int	main(void)
 //{
-//    char	*line;
 //    int		fd;
-//    fd = open("/Users/gtrinida/CLionProjects/42gnl/2D.txt", O_RDONLY);
-//    gnl(fd, "01234567890123456789012345678901234567890\n");
+//	fd = open("/Users/gtrinida/CLionProjects/42gnl/gnlTester/files/multiple_nlx5", O_RDWR);
+//	gnl(fd, "\n");
+//	gnl(fd, "\n");
+//	gnl(fd, "\n");
+//	gnl(fd, "\n");
+//	gnl(fd, "\n");
+//	gnl(fd, NULL);
 //    close(fd);
 //}
-////gcc -Wall -Wextra -Werror -D BUFFER_SIZE=42

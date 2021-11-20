@@ -19,14 +19,14 @@
 # include <stdlib.h>
 
 char	*ft_strchr(const char *s, int c);
-char	*ft_strdup(const char *s1);
+char	*ft_strdup_extra(const char *str, int flag);
 size_t	ft_strlen(char const *str);
 char	*ft_strjoin(char const *s1, char const *s2);
 void	ft_strcpy(char *dst, const char *src);
-char		*get_next_line(int fd);
+char	*get_next_line(int fd);
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 10
+#  define BUFFER_SIZE 42
 # endif
 
 #endif
